@@ -4,15 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ExpenseEntryItemList from "./components/ExpenseEntryItemList";
-import MessageWithEvent from "./components/MessageWithEvents";
+import Product from "./components/Shopping-cart";
+import Decision from "./components/test";
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Product />
+//   </React.StrictMode>,
+//   document.getElementById("message")
+// );
+const product = ReactDOM.createRoot(document.getElementById("tester"));
+product.render(<Decision />);
 
-const message = ReactDOM.createRoot(document.getElementById("message"));
-message.render(
-  <div>
-    <MessageWithEvent name="React" />
-    <MessageWithEvent name="React developer" />
-  </div>
-);
 const items = [
   {
     id: 1,
@@ -86,5 +88,5 @@ const items = [
   },
 ];
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<ExpenseEntryItemList item={items} />);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<ExpenseEntryItemList item={items} />);

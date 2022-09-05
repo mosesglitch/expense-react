@@ -6,6 +6,7 @@ class ExpenseEntryItemList extends React.Component {
     this.handleMouseEnter = this.handleMouseEnter.bind();
     this.handleMouseLeave = this.handleMouseLeave.bind();
     this.handleMouseOver = this.handleMouseOver.bind();
+    this.handleDelete = this.handleDelete.bind();
   }
   handleMouseEnter(e) {
     e.target.parentNode.classList.add("highlight");
@@ -15,6 +16,15 @@ class ExpenseEntryItemList extends React.Component {
   }
   handleMouseOver(e) {
     console.log("The mouse is at (" + e.clientX + ", " + e.clientY + ")");
+  }
+  handleDelete(id, e) {
+    e.preventDefault();
+    console.log(id);
+    // let newItems = [];
+    // items.forEach((item, idx) => {
+    //   if (item.id != id) newItems.push(item);
+    // });
+    // setItems(newItems);
   }
   render() {
     const lists = this.props.item.map((item) => (
@@ -27,6 +37,11 @@ class ExpenseEntryItemList extends React.Component {
         <td>{item.amount}</td>
         <td>{new Date(item.spendDate).toDateString()}</td>
         <td>{item.category}</td>
+        <td>
+          <a href="#" onClick={(e) => this.handleDelete(item.id, e)}>
+            Remove
+          </a>
+        </td>
       </tr>
     ));
     return (
@@ -37,6 +52,7 @@ class ExpenseEntryItemList extends React.Component {
             <th>Amount</th>
             <th>Date</th>
             <th>Category</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>{lists}</tbody>
