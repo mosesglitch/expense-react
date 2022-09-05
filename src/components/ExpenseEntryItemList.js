@@ -6,8 +6,12 @@ class ExpenseEntryItemList extends React.Component {
     this.handleMouseEnter = this.handleMouseEnter.bind();
     this.handleMouseLeave = this.handleMouseLeave.bind();
     this.handleMouseOver = this.handleMouseOver.bind();
-    this.handleDelete = this.handleDelete.bind();
+    // this.handleDelete = this.handleDelete.bind();
   }
+  state = {
+    items: this.props.item,
+    valud: this.props.valu,
+  };
   handleMouseEnter(e) {
     e.target.parentNode.classList.add("highlight");
   }
@@ -19,15 +23,29 @@ class ExpenseEntryItemList extends React.Component {
   }
   handleDelete(id, e) {
     e.preventDefault();
-    console.log(id);
-    // let newItems = [];
-    // items.forEach((item, idx) => {
-    //   if (item.id != id) newItems.push(item);
-    // });
-    // setItems(newItems);
+
+    this.setState((state) => {
+      let items = [];
+      state.items.forEach((item, idx) => {
+        if (item.id !== id) items.push(item);
+        console.log(item.id);
+      });
+      let newState = {
+        items: items,
+      };
+      return newState;
+    });
   }
+  getTotal() {
+    let total = 0;
+    for (var i = 0; i < this.state.items.length; i++) {
+      total += this.state.items[i].amount;
+    }
+    return total;
+  }
+
   render() {
-    const lists = this.props.item.map((item) => (
+    const lists = this.state.items.map((item) => (
       <tr
         key={item.id}
         onMouseEnter={this.handleMouseEnter}
@@ -45,18 +63,30 @@ class ExpenseEntryItemList extends React.Component {
       </tr>
     ));
     return (
-      <table onMouseOver={this.handleMouseOver}>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>{lists}</tbody>
-      </table>
+      <div>
+        <table onMouseOver={this.handleMouseOver}>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lists}
+            <tr>
+              <td colSpan="1" style={{ textAlign: "right" }}>
+                Total Amount
+              </td>
+              <td colSpan="4" style={{ textAlign: "left" }}>
+                {this.getTotal()}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

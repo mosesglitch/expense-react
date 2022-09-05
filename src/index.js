@@ -12,8 +12,6 @@ import Decision from "./components/test";
 //   </React.StrictMode>,
 //   document.getElementById("message")
 // );
-const product = ReactDOM.createRoot(document.getElementById("tester"));
-product.render(<Decision />);
 
 const items = [
   {
@@ -87,6 +85,7 @@ const items = [
     category: "Academic",
   },
 ];
-
+const product = ReactDOM.createRoot(document.getElementById("tester"));
+product.render(<ExpenseEntryItemList item={items} valu={"Nietchze"} />);
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(<ExpenseEntryItemList item={items} />);
