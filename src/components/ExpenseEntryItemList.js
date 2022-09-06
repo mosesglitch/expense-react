@@ -23,7 +23,7 @@ class ExpenseEntryItemList extends React.Component {
   }
   handleDelete(id, e) {
     e.preventDefault();
-
+    if (this.props.onDelete != null) this.props.onDelete(id, e);
     this.setState((state) => {
       let items = [];
       state.items.forEach((item, idx) => {
@@ -36,39 +36,6 @@ class ExpenseEntryItemList extends React.Component {
       return newState;
     });
   }
-  componentDidMount() {
-    console.log(
-      "ExpenseEntryItemList :: Initialize :: componentDidMount ::Component mounted"
-    );
-  }
-  shouldComponentUpdate() {
-    console.log(
-      "ExpenseEntryItemList :: Update :: shouldComponentUpdateinvoked :: Before update"
-    );
-    return true;
-  }
-  static getDerivedStateFromProps(props, state) {
-    console.log(
-      "ExpenseEntryItemList :: Initialize / Update ::getDerivedStateFromProps :: Before update"
-    );
-    return null;
-  }
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log(
-      "ExpenseEntryItemList :: Update :: getSnapshotBeforeUpdate ::Before update"
-    );
-    return null;
-  }
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(
-      "ExpenseEntryItemList :: Update :: componentDidUpdate ::Component updated"
-    );
-  }
-  componentWillUnmount() {
-    console.log(
-      "ExpenseEntryItemList :: Remove :: componentWillUnmount ::Component unmounted"
-    );
-  }
   getTotal() {
     let total = 0;
     for (var i = 0; i < this.state.items.length; i++) {
@@ -76,7 +43,12 @@ class ExpenseEntryItemList extends React.Component {
     }
     return total;
   }
-
+  static getDerivedStateFromProps(props, state) {
+    let newState = {
+      items: props.items,
+    };
+    return newState;
+  }
   render() {
     const lists = this.state.items.map((item) => (
       <tr
