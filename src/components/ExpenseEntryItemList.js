@@ -97,6 +97,7 @@ class ExpenseEntryItemList extends React.Component {
     ));
     return (
       <div>
+        <div>{this.props.header}</div>
         <table onMouseOver={this.handleMouseOver}>
           <thead>
             <tr>
@@ -119,6 +120,7 @@ class ExpenseEntryItemList extends React.Component {
             </tr>
           </tbody>
         </table>
+        <div>{this.props.footer}</div>
       </div>
     );
   }

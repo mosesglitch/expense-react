@@ -85,7 +85,26 @@ const items = [
     category: "Academic",
   },
 ];
-const product = ReactDOM.createRoot(document.getElementById("tester"));
-product.render(<ExpenseEntryItemList item={items} valu={"Nietchze"} />);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ExpenseEntryItemList
+      items={items}
+      header={
+        <div>
+          <h1>Expense manager</h1>
+        </div>
+      }
+      footer={
+        <div style={{ textAlign: "left" }}>
+          <p style={{ fontSize: 12 }}>Sample application</p>
+        </div>
+      }
+    />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+// const product = ReactDOM.createRoot(document.getElementById("tester"));
+// product.render(<ExpenseEntryItemList item={items} valu={"Nietchze"} />);
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(<ExpenseEntryItemList item={items} />);
