@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ExpenseEntryItemList from "./components/ExpenseEntryItemList";
-import Product from "./components/Shopping-cart";
-import Decision from "./components/test";
-import Pager from "./components/Pager";
+
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <Product />
@@ -86,36 +83,7 @@ const items = [
     category: "Academic",
   },
 ];
-const pageCount = 3;
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Pager
-      items={items}
-      pageCount={pageCount}
-      render={(pagerState) => (
-        <div>
-          <ExpenseEntryItemList
-            items={pagerState.items}
-            onDelete={pagerState.deleteHandler}
-            header={
-              <div>
-                <h1>Expense manager</h1>
-              </div>
-            }
-            footer={
-              <div style={{ textAlign: "left" }}>
-                <p style={{ fontSize: 12 }}>Sample application</p>
-              </div>
-            }
-          />
-        </div>
-      )}
-    />
-  </React.StrictMode>
-);
 // const product = ReactDOM.createRoot(document.getElementById("tester"));
 // product.render(<ExpenseEntryItemList item={items} valu={"Nietchze"} />);
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(<ExpenseEntryItemList item={items} />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ExpenseEntryItemList items={items} />);
