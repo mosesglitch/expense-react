@@ -12,6 +12,36 @@ class ExpenseEntryItemList extends React.Component {
   constructor(props) {
     super(props);
   }
+  fetchRemoteItems() {
+    fetch("http://localhost:8000/api/expenses")
+      // fetch api is used to fetch the item from the remote server.
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setItems(result);
+          // setItems is used to format and store the items in the state.
+        },
+
+        (error) => {
+          this.setState({
+            isLoaded: false,
+            error,
+          });
+        }
+      );
+  }
+  componentDidMount() {
+    this.fetchRemoteItems();
+  }
+
+  // life cycle api to load the items into the component during its mounting phase.
+  deleteRemoteItem(id) {
+    fetch("http://localhost:8000/api/expense/" + id, { method: "DELETE" })
+      .then((res) => res.json())
+      .then(() => {
+        this.fetchRemoteItems();
+      });
+  }
   render() {
     const StyledTableCell = withStyles((theme) => ({
       head: {
