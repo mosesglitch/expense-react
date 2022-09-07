@@ -86,7 +86,7 @@ const items = [
     category: "Academic",
   },
 ];
-const pageCount = 3;
+const pageCount = 5;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
